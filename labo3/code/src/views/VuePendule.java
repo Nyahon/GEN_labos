@@ -4,6 +4,8 @@ import models.Pendule;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -15,6 +17,7 @@ public class VuePendule  extends JFrame implements Observer {
 
     private static int TAILLE = 100; // Taille de la demi-fenétre
     private ToileGraphique toile;
+    private JButton plus;
 
     //------------------------------------------------------------------------
     class ToileGraphique extends JPanel {
@@ -61,9 +64,13 @@ public class VuePendule  extends JFrame implements Observer {
     public VuePendule(Pendule p, String nom, int posX, int posY){
 
         toile = new ToileGraphique();
+
+
+
         setTitle(nom);
         getContentPane().add (toile, BorderLayout.CENTER);
         dessinerTemps();
+        dessinerBouton(p);
 
         pack();
         setResizable(false);
@@ -72,8 +79,15 @@ public class VuePendule  extends JFrame implements Observer {
         setVisible(true);
 
     }
-    public void dessinerBouton(){
-        //TODO
+    public void dessinerBouton(Pendule p){
+        plus = new JButton("+");
+        plus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                p.incrementerMinutes();
+            }
+        });
+        getContentPane().add(plus, BorderLayout.NORTH);
     }
     public void dessinerTemps(){
         JLabel jlabel = new JLabel(secondes+":"+minutes+":"+heures){

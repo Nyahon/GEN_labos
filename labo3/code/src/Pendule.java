@@ -27,11 +27,13 @@ public class Pendule extends JFrame {
     private ToileGraphique toile;
 
 
+
     //------------------------------------------------------------------------
     class ToileGraphique extends JPanel {
 		  
 		  public ToileGraphique() {
 				setBackground(Color.white);
+
 		  }
 
 		  public void paintComponent (Graphics g) {
@@ -70,7 +72,7 @@ public class Pendule extends JFrame {
     //------------------------------------------------------------------------
     public Pendule (String nom, int valSeconde, int posX, int posY) {
 
-        toile = new ToileGraphique();					
+        toile = new ToileGraphique();
         setTitle(nom);
         getContentPane().add (toile, BorderLayout.CENTER);
         
